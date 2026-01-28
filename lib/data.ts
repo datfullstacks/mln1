@@ -5,11 +5,18 @@ export type LibraryEntry = {
   title: string;
   desc: string;
   tags: string[];
+  videoId?: string;
 };
 
 export type RegionHighlight = {
   title: string;
   points: string[];
+};
+
+export type RegionVideo = {
+  title: string;
+  youtubeId: string;
+  description: string;
 };
 
 export type RegionCard = {
@@ -20,22 +27,23 @@ export type RegionCard = {
   badge2: string;
   badgeImage?: string;
   highlights: RegionHighlight[];
+  videos: RegionVideo[];
 };
 
 export type Rank = { name: string; min: number };
 
 export const libraryEntries: LibraryEntry[] = [
-  { region: 'bac', title: 'Quan họ Bắc Ninh', desc: 'Làn điệu giao duyên, UNESCO công nhận, hát đối đáp trên thuyền.', tags: ['Dân ca', 'Lễ hội Lim'] },
-  { region: 'bac', title: 'Ca trù', desc: 'Không gian ca trù với phách, đàn đáy và giọng hát ca nương.', tags: ['Di sản phi vật thể'] },
-  { region: 'bac', title: 'Ẩm thực Hà Nội', desc: 'Phở, bún chả, bún thang, cốm làng Vòng và trà sen.', tags: ['Ẩm thực'] },
-  { region: 'trung', title: 'Nhã nhạc cung đình Huế', desc: 'Âm nhạc lễ nghi triều Nguyễn, nhạc cụ nhã nhạc & múa cung đình.', tags: ['Âm nhạc cung đình'] },
+  { region: 'bac', title: 'Quan họ Bắc Ninh', desc: 'Làn điệu giao duyên, UNESCO công nhận, hát đối đáp trên thuyền.', tags: ['Dân ca', 'Lễ hội Lim'], videoId: 'aW785pAZOnw' },
+  { region: 'bac', title: 'Ca trù', desc: 'Không gian ca trù với phách, đàn đáy và giọng hát ca nương.', tags: ['Di sản phi vật thể'], videoId: 'ZkKMhvRpeiA' },
+  { region: 'bac', title: 'Múa rối', desc: 'Sân khấu nước truyền thống, nhân vật gỗ múa trong nước với tuyến nước, âm thanh trống, chiêng và dân ca.', tags: ['Sân khấu'], videoId: 'UVzicjFPTsI' },
+  { region: 'trung', title: 'Nhã nhạc cung đình Huế', desc: 'Âm nhạc lễ nghi triều Nguyễn, nhạc cụ nhã nhạc & múa cung đình.', tags: ['Âm nhạc cung đình'] ,videoId: 'MfcuPMPYDFg'},
   { region: 'trung', title: 'Mì Quảng & cao lầu', desc: 'Sợi mì vàng, đậu phộng rang, bánh tráng nướng và rau sống xứ Quảng.', tags: ['Ẩm thực'] },
   { region: 'trung', title: 'Bài chòi Trung Bộ', desc: 'Trò chơi dân gian hát hò với thẻ tre, gắn với Tết Nguyên Đán.', tags: ['Trò chơi', 'Di sản UNESCO'] },
-  { region: 'nam', title: 'Đờn ca tài tử', desc: 'Ngũ cung phương Nam, vọng cổ, nhịp song lang, không gian đờn ca trên sông.', tags: ['Âm nhạc'] },
+  { region: 'nam', title: 'Đờn ca tài tử', desc: 'Ngũ cung phương Nam, vọng cổ, nhịp song lang, không gian đờn ca trên sông.', tags: ['Âm nhạc'], videoId: 'hrKeFIkRzwg' },
   { region: 'nam', title: 'Chợ nổi Mekong', desc: 'Văn hóa giao thương trên sông, ghe xuồng, tiếng rao hàng đầu sáng.', tags: ['Đời sống', 'Du lịch'] },
   { region: 'nam', title: 'Ẩm thực miệt vườn', desc: 'Lẩu mắm, bánh xèo, cá kho tộ, trái cây Cái Bè, Cần Thơ.', tags: ['Ẩm thực'] },
   { region: 'trung', title: 'Lễ hội cầu ngư', desc: 'Tín ngưỡng cư dân biển miền Trung, cầu mùa tôm cá bội thu.', tags: ['Lễ hội', 'Tín ngưỡng'] },
-  { region: 'bac', title: 'Chèo đồng bằng', desc: 'Sân khấu dân gian kết hợp hài hước, trữ tình và múa.', tags: ['Sân khấu'] },
+  { region: 'bac', title: 'Chèo đồng bằng', desc: 'Sân khấu dân gian kết hợp hài hước, trữ tình và múa.', tags: ['Sân khấu'], videoId: 'EBvN_4tHrzI' },
   { region: 'nam', title: 'Đua ghe ngo Nam Bộ', desc: 'Lễ hội Khmer với những chiếc ghe ngo dài, nhiều tay chèo.', tags: ['Lễ hội', 'Thể thao dân gian'] }
 ];
 
@@ -77,8 +85,23 @@ export const regions: RegionCard[] = [
           'Xưng hô luôn kèm vai vế (cô, chú, bác, anh, chị) và “dạ/thưa”.',
           'Nghi lễ gia đình coi trọng trình tự, sính lễ, giờ lành, thể hiện sự chỉn chu.'
         ]
-      }
-    ]
+      }    ],
+    videos: [
+      {
+        title: 'Quan họ Bắc Ninh - UNESCO',
+        youtubeId: '6RltCQ5Jcfo',
+        description: 'Làn điệu giao duyên tại lễ hội Lim, quan họ là di sản văn hóa phi vật thể UNESCO'
+      },
+      {
+        title: 'Ca trù - Âm nhạc giao duyên',
+        youtubeId: '7lQTGbfQwck',
+        description: 'Không gian ca trù truyền thống với phách, đàn đáy và giọng hát ca nương'
+      },
+      {
+        title: 'Chèo - Sân khấu dân gian Bắc Bộ',
+        youtubeId: 'EBvN_4tHrzI',
+        description: 'Sân khấu dân gian kết hợp hài hước, trữ tình và múa'
+      }    ]
   },
   {         
     key: 'trung',
@@ -102,6 +125,23 @@ export const regions: RegionCard[] = [
       {
         title: 'Âm nhạc',
         points: ['Hò khoan Lệ Thủy', 'Bài chòi', 'Nhã nhạc cung đình']
+      }
+    ],
+    videos: [
+      {
+        title: 'Nhã nhạc cung đình Huế - UNESCO',
+        youtubeId: 'hWbJfKw_nLo',
+        description: 'Âm nhạc lễ nghi triều Nguyễn, được UNESCO công nhận di sản nhân loại'
+      },
+      {
+        title: 'Bài chòi - Trò chơi dân gian Trung Bộ',
+        youtubeId: 'A-4q8-Aw_0I',
+        description: 'Trò chơi dân gian hát hò với thẻ tre, gắn với Tết Nguyên Đán miền Trung'
+      },
+      {
+        title: 'Phố cổ Hội An - Di sản thế giới',
+        youtubeId: '5LFvQxgKV_w',
+        description: 'Kiến trúc cổ kính, đèn lồng, cảnh đẹp dải đất di sản'
       }
     ]
   },
@@ -127,6 +167,23 @@ export const regions: RegionCard[] = [
       {
         title: 'Giao lưu văn hóa',
         points: ['Múa lân', 'Lễ hội Ok Om Bok', 'Miếu Bà Chúa Xứ núi Sam']
+      }
+    ],
+    videos: [
+      {
+        title: 'Đờn ca tài tử - Âm nhạc miền Nam',
+        youtubeId: 'hKMsrEKSM98',
+        description: 'Ngũ cung phương Nam, vọng cổ, nhịp song lang - tâm hồn sông nước'
+      },
+      {
+        title: 'Chợ nổi Cái Răng - Văn hóa sông nước',
+        youtubeId: '4qVPqwS5Axg',
+        description: 'Thị trường truyền thống trên sông, ghe xuồng và tiếng rao hàng đầu sáng'
+      },
+      {
+        title: 'Cải lương - Sân khấu miền Nam',
+        youtubeId: 'UZEgGHfkRcI',
+        description: 'Hình thức sân khấu mộc mạc, gần gũi với cuộc sống đời thường miệt vườn'
       }
     ]
   }

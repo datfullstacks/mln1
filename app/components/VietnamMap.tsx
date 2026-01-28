@@ -120,6 +120,11 @@ export function VietnamMap() {
             ))}
             <span className="island eez">Vùng EEZ Biển Đông</span>
           </div>
+          <div className="map-filters">
+            <button className="filter-btn filter-hoang-sa">Hoàng Sa</button>
+            <button className="filter-btn filter-truong-sa">Trường Sa</button>
+            <button className="filter-btn filter-eez">Vùng EEZ Biển Đông</button>
+          </div>
         </div>
         <div className="map-panel card">
           <h3>{selectedCard.badge2}</h3>
@@ -132,6 +137,19 @@ export function VietnamMap() {
           <div className="map-samples">
             {featured.map(entry => (
               <article key={entry.title} className="map-sample">
+                {entry.videoId && (
+                  <div className="map-sample-video">
+                    <iframe
+                      width="100%"
+                      height="160"
+                      src={`https://www.youtube.com/embed/${entry.videoId}`}
+                      title={entry.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
                 <strong>{entry.title}</strong>
                 <p>{entry.desc}</p>
                 <div className="map-tags">

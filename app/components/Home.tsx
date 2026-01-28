@@ -7,10 +7,10 @@ import { Hero } from "./Hero";
 import { Library } from "./Library";
 import { NavBar, type NavKey } from "./NavBar";
 import { Presentation as PresentationOverview } from "./Presentation";
-import { Regions } from "./Regions";
-import { Theory } from "./Theory";
 import { PresentationModal } from "./PresentationModal";
+import { Regions } from "./Regions";
 import { SlideContent, type Slide } from "./SlideContent";
+import { Theory } from "./Theory";
 
 export function Home() {
   const [currentPage, setCurrentPage] = useState<NavKey>("presentation");
@@ -163,29 +163,82 @@ export function Home() {
     // Mở đầu: Đặt vấn đề về sự khác biệt phong tục giữa các vùng miền
     {
       id: "slide-1",
-      layout: "title" as const,
+      layout: "cover" as const,
+      hideTitle: true,
       content: {
-        textLarge: "Vì sao cùng một quốc gia nhưng phong tục tập quán giữa các vùng miền lại khác biệt sâu sắc?",
-        image: "/images/modau.png",
+        image: "/images/tien/bia.png",
       },
     },
     // Lý luận nền tảng: Tư tưởng Hồ Chí Minh về văn hoá
     {
       id: "slide-2",
       title: "Tư tưởng Hồ Chí Minh về văn hoá",
-      layout: "title" as const,
+      layout: "image-carousel" as const,
       content: {
+        citation: "(Giáo trình Tư tưởng Hồ Chí Minh, trang 206)",
         points: [
-          "Chủ tịch Hồ Chí Minh được UNESCO tôn vinh là Anh hùng giải phóng dân tộc, Nhà văn hoá kiệt xuất của Việt Nam (1987).",
-          "Người để lại dấu ấn sâu sắc trong sự nghiệp đấu tranh vì hoà bình, độc lập dân tộc, dân chủ và tiến bộ xã hội, đồng thời có đóng góp lớn trong các lĩnh vực văn hoá, giáo dục, nghệ thuật.",
-          "Tư tưởng văn hoá Hồ Chí Minh là sự kết tinh truyền thống văn hoá hàng nghìn năm của dân tộc Việt Nam, đồng thời tiếp thu tinh hoa văn hoá nhân loại, thể hiện khát vọng khẳng định bản sắc dân tộc và tăng cường hiểu biết giữa các dân tộc.",
-          "Người có cống hiến to lớn trong việc sáng tạo văn hoá, xây dựng hệ thống quan điểm về văn hoá và đặt nền móng cho nền văn hoá mới Việt Nam.",
-          "Suốt cuộc đời, Hồ Chí Minh đặc biệt chú trọng chống nạn mù chữ, nâng cao dân trí, phát triển văn hoá.",
-          "Nền văn hoá mà Người chủ trương là sự kết hợp giữa chủ nghĩa yêu nước và chủ nghĩa quốc tế chân chính, giữa truyền thống dân tộc và giá trị tiến bộ của nhân loại.",
-          "Văn hoá phải đi sâu vào đời sống xã hội, góp phần chống tham nhũng, lười biếng, phù hoa, xa xỉ, giúp mọi người dân hiểu rõ trách nhiệm và được hưởng hạnh phúc chính đáng.",
+          {
+            text: "Chủ tịch Hồ Chí Minh được UNESCO tôn vinh là Anh hùng giải phóng dân tộc, Nhà văn hoá kiệt xuất của Việt Nam (1987).",
+            image: "/images/nhi/1.jpg",
+          },
+          {
+            text: "Người để lại dấu ấn sâu sắc trong sự nghiệp đấu tranh vì hoà bình, độc lập dân tộc, dân chủ và tiến bộ xã hội, đồng thời có đóng góp lớn trong các lĩnh vực văn hoá, giáo dục, nghệ thuật.",
+            image: "/images/nhi/2.jpg",
+          },
+          {
+            text: "Tư tưởng văn hoá Hồ Chí Minh là sự kết tinh truyền thống văn hoá hàng nghìn năm của dân tộc Việt Nam, đồng thời tiếp thu tinh hoa văn hoá nhân loại, thể hiện khát vọng khẳng định bản sắc dân tộc và tăng cường hiểu biết giữa các dân tộc.",
+            image: "/images/nhi/3.jpg",
+          },
+          {
+            text: "Người có cống hiến to lớn trong việc sáng tạo văn hoá, xây dựng hệ thống quan điểm về văn hoá và đặt nền móng cho nền văn hoá mới Việt Nam.",
+            image: "/images/nhi/4.jpg",
+          },
+          {
+            text: "Suốt cuộc đời, Hồ Chí Minh đặc biệt chú trọng chống nạn mù chữ, nâng cao dân trí, phát triển văn hoá.",
+            image: "/images/nhi/5.jpg",
+          },
+          {
+            text: "Nền văn hoá mà Người chủ trương là sự kết hợp giữa chủ nghĩa yêu nước và chủ nghĩa quốc tế chân chính, giữa truyền thống dân tộc và giá trị tiến bộ của nhân loại.",
+            image: "/images/nhi/6.jpg",
+          },
+          {
+            text: "Văn hoá phải đi sâu vào đời sống xã hội, góp phần chống tham nhũng, lười biếng, phù hoa, xa xỉ, giúp mọi người dân hiểu rõ trách nhiệm và được hưởng hạnh phúc chính đáng.",
+            image: "/images/nhi/7.jpg",
+          },
+
         ],
       },
 
+    },
+    {
+      id: "slide-2a",
+      title: "Quan niệm của Hồ Chí Minh về văn hoá",
+      layout: "tabs" as const,
+      content: {
+        citation: "(Giáo trình Tư tưởng Hồ Chí Minh, Mục 1a trang 207)",
+        extraTitle: "Quan niệm văn hoá năm 1943",
+        extraQuote:
+          "“Vì lẽ sinh tồn cũng như mục đích của cuộc sống, loài người mới sáng tạo & phát minh ra ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, văn học, nghệ thuật, những công cụ cho sinh hoạt hằng ngày về mặc, ăn, ở & các phương thức sử dụng. Toàn bộ những phát minh đó tức là văn hoá. Văn hoá là sự tổng hợp của mọi phương thức sinh hoạt cùng với biểu hiện của nó mà loài người đã sản sinh ra nhằm thích ứng những nhu cầu đời sống & đòi hỏi của sự sinh tồn”.",
+        extraQuoteAuthor: "Hồ Chí Minh",
+        tabs: [
+          {
+            title: "Theo nghĩa rộng",
+            text: "Văn hoá là tổng hợp mọi phương thức sinh hoạt của con người.",
+          },
+          {
+            title: "Theo nghĩa hẹp",
+            text: "Văn hoá là đời sống tinh thần xã hội, thuộc kiến trúc thượng tầng.",
+          },
+          {
+            title: "Theo nghĩa hẹp hơn",
+            text: "Văn hoá gắn với giáo dục, trường học, xoá nạn mù chữ, biết đọc – biết viết.",
+          },
+          {
+            title: "Theo phương thức",
+            text: "Theo phương thức sử dụng công cụ sinh hoạt.",
+          },
+        ],
+      },
     },
     // Ba yếu tố cấu thành tồn tại xã hội
     {
@@ -435,114 +488,139 @@ export function Home() {
     {
       id: "slide-7",
       title: "Quan điểm của Hồ Chí Minh về vai trò của văn hoá",
+      subtitle: "Văn hoá là mục tiêu và động lực của sự nghiệp cách mạng",
       layout: "highlight" as const,
       content: {
+        notes: [
+          "Cách mạng Việt Nam không chỉ nhằm giành độc lập dân tộc, mà còn hướng tới xây dựng một đời sống văn hoá mới, con người mới, xã hội mới.",
+          "📚 Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 2.a (Các phương diện của văn hóa), trang 214; Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 3 (Xây dựng nền văn hóa mới), trang 217.",
+          "Do đó, cùng một vài khía cạnh khác như chính trị, kinh tế, thì văn hoá là một bộ phận không thể thiếu trong mục tiêu chung của cách mạng.",
+          "📚 Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 2.a (Văn hóa là mục tiêu), trang 213.",
+        ],
         boxes: [
           {
             title: "Văn hoá chính trị",
-            icon: "🟠",
+            icon: "/images/tien/21.jpg",
             cards: [
               {
                 content:
-                  "Định hướng tư tưởng, nâng cao nhận thức, \"soi đường cho quốc dân đi\", giúp nhân dân hiểu đúng con đường cách mạng.",
-                images: [],
+                  "Định hướng tư tưởng, nâng cao nhận thức, \"soi đường cho quốc dân đi\", giúp nhân dân hiểu đúng con đường cách mạng. (Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 2.a (Văn hóa là động lực), trang 214.)",
+                images: ["/images/tien/01.jpg"],
               },
             ],
           },
           {
             title: "Văn hoá giáo dục",
-            icon: "🟠",
+            icon: "/images/tien/25.jpg",
             cards: [
               {
                 content:
-                  "Tiêu biểu là phong trào \"diệt giặc dốt\", nhằm nâng cao dân trí, đào tạo con người mới – chủ thể của sự nghiệp xây dựng và bảo vệ đất nước.",
-                images: [],
+                  "Tiêu biểu là phong trào \"diệt giặc dốt\", nhằm nâng cao dân trí, đào tạo con người mới – chủ thể của sự nghiệp xây dựng và bảo vệ đất nước. Sau Cách mạng Tháng Tám năm 1945, hơn 90% dân số Việt Nam mù chữ. Bác Hồ coi nạn mù chữ là một loại \"giặc\" và kêu gọi toàn dân tham gia diệt giặc dốt. (Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 2.a (Văn hóa là động lực), trang 214.)",
+                images: ["/images/tien/02.jpg"],
               },
-              {
-                content:
-                  "Sau Cách mạng Tháng Tám năm 1945, hơn 90% dân số Việt Nam mù chữ. Bác Hồ coi nạn mù chữ là một loại \"giặc\" và kêu gọi toàn dân tham gia diệt giặc dốt.",
-                images: [],
-              },
+
             ],
           },
           {
             title: "Văn hoá văn nghệ",
-            icon: "🟠",
+            icon: "/images/tien/23.jpg",
             cards: [
               {
                 content:
                   "Khơi dậy lòng yêu nước, tinh thần đoàn kết, cổ vũ ý chí đấu tranh và khát vọng vươn lên.",
-                images: [],
+                images: ["/images/tien/03.jpg", "/images/tien/04.jpg"],
+                imageCaptions: ["Bình Ngô đại cáo - Nguyễn Trãi", "Đất nước - Nguyễn Khoa Điềm"],
               },
               {
                 content:
-                  "Các tác phẩm như \"Bình Ngô đại cáo\" (Nguyễn Trãi), \"Đất nước\" (Nguyễn Khoa Điềm) và nhiều phim/âm nhạc hiện đại đã nuôi dưỡng tinh thần yêu nước, củng cố đoàn kết dân tộc.",
-                images: [],
+                  "Ngày nay, tinh thần yêu nước tiếp tục được lan tỏa qua nhiều hình thức văn hóa – văn nghệ hiện đại.",
+                images: [
+                  "/images/tien/05.jpg",
+                  "/images/tien/06.jpg",
+                ],
+                imageCaptions: [
+                  "Mưa đỏ",
+                  "Địa đạo: Mặt trời trong bóng tối",
+                ],
               },
+              {
+                content:
+                  "Các sự kiện văn hóa – văn nghệ tiếp tục khơi dậy niềm tự hào dân tộc.",
+                images: [
+                  "/images/tien/08.jpg",
+                  "/images/tien/07.jpg",
+                ],
+                imageCaptions: [
+                  "Còn gì đẹp hơn",
+                  "Nỗi đau giữa hòa bình",
+                ],
+              },
+              {
+                content:
+                  "Các sự kiện âm nhạc quy mô lớn lan tỏa tinh thần yêu nước và niềm tự hào dân tộc.",
+                images: [
+                  "/images/tien/11.jpg",
+                  "/images/tien/12.webp",
+                ],
+                imageCaptions: [
+                  "Sự kiện A80",
+                  "Concert Quốc gia",
+                ],
+              },
+
             ],
           },
           {
             title: "Văn hoá đạo đức",
-            icon: "🟠",
+            icon: "/images/tien/22.jpg",
             cards: [
               {
                 content:
                   "Xây dựng hệ giá trị con người mới với các phẩm chất cốt lõi: cần, kiệm, liêm, chính, chí công vô tư.",
-                images: [],
+                images: ["/images/tien/9.png"],
               },
             ],
           },
           {
             title: "Văn hoá pháp luật",
-            icon: "🟠",
+            icon: "/images/tien/24.jpg",
             cards: [
               {
                 content: "Bảo đảm dân chủ, trật tự, kỷ cương, phép nước.",
-                images: [],
+                images: ["/images/tien/10.jpg"],
               },
             ],
           },
-          {
-            title: "Kết luận",
-            icon: "✅",
-            cards: [
-              {
-                content:
-                  "Trình độ văn hoá của nhân dân càng cao thì khả năng khôi phục kinh tế, phát triển dân chủ và củng cố độc lập dân tộc càng vững chắc.",
-                images: [],
-              },
-              {
-                content:
-                  "📚 Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, mục 2.a (Văn hóa là động lực), trang 214.",
-                images: [],
-              },
-            ],
-          },
+
         ],
       },
     },
-    {
-      id: "slide-8",
-      title: "Văn hoá là mục tiêu và động lực của sự nghiệp cách mạng",
-      layout: "section-summary" as const,
-      hideTitle: true,
-      content: {
-        number: "1",
-        title: "Văn hoá là mục tiêu và động lực của sự nghiệp cách mạng",
-        intro:
-          "Cách mạng Việt Nam không chỉ giành độc lập dân tộc, mà còn hướng tới xây dựng đời sống văn hoá mới, con người mới, xã hội mới.",
-        bullets: [
-          "Văn hoá là bộ phận không thể thiếu trong mục tiêu chung của cách mạng.",
-          "Văn hoá thúc đẩy phát triển xã hội qua các lĩnh vực: chính trị, giáo dục, văn nghệ, đạo đức, pháp luật.",
-          "Trình độ văn hoá càng cao thì khả năng khôi phục kinh tế, phát triển dân chủ và củng cố độc lập dân tộc càng vững chắc.",
-        ],
-      },
-    },
+    // {
+    //   id: "slide-8",
+    //   title: "Văn hoá là mục tiêu và động lực của sự nghiệp cách mạng",
+    //   layout: "section-summary" as const,
+    //   hideTitle: true,
+    //   content: {
+    //     number: "1",
+    //     title: "Văn hoá là mục tiêu và động lực của sự nghiệp cách mạng",
+    //     intro:
+    //       "Cách mạng Việt Nam không chỉ giành độc lập dân tộc, mà còn hướng tới xây dựng đời sống văn hoá mới, con người mới, xã hội mới.",
+    //     bullets: [
+    //       "Văn hoá là bộ phận không thể thiếu trong mục tiêu chung của cách mạng.",
+    //       "Văn hoá thúc đẩy phát triển xã hội qua các lĩnh vực: chính trị, giáo dục, văn nghệ, đạo đức, pháp luật.",
+    //       "Trình độ văn hoá càng cao thì khả năng khôi phục kinh tế, phát triển dân chủ và củng cố độc lập dân tộc càng vững chắc.",
+    //     ],
+    //   },
+    // },
     {
       id: "slide-9",
       title: "Văn hoá là một mặt trận",
       layout: "quote" as const,
       content: {
+        intro: "Văn hoá là một lĩnh vực hoạt động độc lập nhưng có quan hệ mật thiết với chính trị và kinh tế, phản ánh tính chất cam go, quyết liệt của cuộc đấu tranh trên lĩnh vực tư tưởng.",
+        citation: "📚 Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, Mục 2.b (Văn hóa là một mặt trận), trang 215 - 216.",
+        image: "/images/tien/13.jpg",
+        imageCaption: "Đại hội Đảng lần thứ XIV",
         quote: "Văn hoá nghệ thuật cũng là một mặt trận, anh chị em văn nghệ sĩ là chiến sĩ trên mặt trận ấy.",
         author: "Hồ Chí Minh",
       },
@@ -550,12 +628,12 @@ export function Home() {
     {
       id: "slide-10",
       title: "Văn hoá phục vụ quần chúng nhân dân",
-      layout: "title" as const,
+      layout: "quote" as const,
       content: {
-        points: [
-          "Văn hoá phải xuất phát từ đời sống, phục vụ và vì đời sống của quần chúng nhân dân.",
-          "Nhân dân không chỉ là đối tượng hưởng thụ mà còn là chủ thể sáng tạo giá trị văn hoá.",
-        ],
+        intro: "Một điểm xuyên suốt trong tư tưởng Hồ Chí Minh là tính nhân dân sâu sắc của văn hoá. Người luôn nhấn mạnh: văn hoá phải xuất phát từ đời sống, phục vụ đời sống và trở về với đời sống của quần chúng nhân dân.",
+        highlightText: "Nhân dân không chỉ là đối tượng hưởng thụ văn hoá, mà còn là chủ thể sáng tạo và thẩm định các giá trị văn hoá.",
+        outro: "Văn hoá chân chính phải phản ánh được tư tưởng, tình cảm, khát vọng của người lao động, đồng thời góp phần nâng cao đời sống tinh thần, đạo đức và trí tuệ của họ.",
+        citation: "📚 Giáo trình Tư tưởng Hồ Chí Minh, Chương 6, Mục 2.c (Văn hóa phục vụ quần chúng nhân dân), trang 216 - 217.",
       },
     },
     // Định nghĩa ý thức xã hội
@@ -579,6 +657,7 @@ export function Home() {
 
   const handleOpenModal = (title: string, cards: { region?: string; content?: string; images: string[] }[]) => {
     setModalContent({ title, cards });
+    setCurrentCardIndex(0);
     setModalOpen(true);
   };
 
@@ -655,6 +734,28 @@ export function Home() {
                   {slide.subtitle && (
                     <p className="slide-subtitle">{slide.subtitle}</p>
                   )}
+                  {slide.id === "slide-7" && (slide as { content?: { notes?: string[] } }).content?.notes?.length ? (
+                    <div
+                      style={{
+                        margin: "0 0 1.5rem",
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                        gap: "1.5rem",
+                        textAlign: "left",
+                        background: "rgba(255, 246, 235, 0.9)",
+                        border: "1px solid rgba(255, 173, 96, 0.5)",
+                        borderRadius: 16,
+                        padding: "1rem 1.25rem",
+                        boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+                      }}
+                    >
+                      {(slide as { content?: { notes?: string[] } }).content?.notes?.map((note, idx) => (
+                        <div key={idx} style={{ lineHeight: 1.7, fontWeight: 600, color: "#6b3a00" }}>
+                          {note}
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
                   <div className="slide-content">
                     <SlideContent
                       slide={slide}

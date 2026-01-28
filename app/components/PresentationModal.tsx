@@ -6,6 +6,7 @@ type ModalCard = {
   region?: string;
   content?: string;
   images: string[];
+  imageCaptions?: string[];
 };
 
 type ModalContent = {
@@ -36,9 +37,11 @@ export function PresentationModal({
     return null;
   }
 
+  const isVanNghe = content.title === "Văn hoá văn nghệ";
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content modal-carousel" onClick={(e) => e.stopPropagation()}>
+      <div className={`modal-content modal-carousel${isVanNghe ? " van-nghe-modal" : ""}`} onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
           ✕
         </button>
@@ -79,12 +82,18 @@ export function PresentationModal({
                       }`}
                     >
                       {card.images.map((img, imgIdx) => (
-                        <img
-                          key={imgIdx}
-                          src={img}
-                          alt={`${altPrefix} ${imgIdx + 1}`}
-                          className="carousel-image"
-                        />
+                        <figure key={imgIdx} style={{ margin: 0 }}>
+                          <img
+                            src={img}
+                            alt={`${altPrefix} ${imgIdx + 1}`}
+                            className="carousel-image"
+                          />
+                          {card.imageCaptions?.[imgIdx] && (
+                            <figcaption style={{ fontSize: "0.8rem", marginTop: 6, textAlign: "center", color: "#666" }}>
+                              {card.imageCaptions[imgIdx]}
+                            </figcaption>
+                          )}
+                        </figure>
                       ))}
                     </div>
                   )}

@@ -1,363 +1,264 @@
 'use client';
 
-type ToolSection = {
-  heading: string;
-  body?: string;
-  links?: { label: string; url: string }[];
-  highlight?: boolean;
-};
-
 type ToolCard = {
   id: string;
-  badge: string;
   icon: string;
   name: string;
-  sections: ToolSection[];
+  purpose: string;
+  promptLinks?: { label: string; url: string }[];
+  result: string;
+  studentEdit: string;
 };
 
 const toolCards: ToolCard[] = [
   {
     id: 'notebooklm',
-    badge: 'a)',
     icon: '📚',
     name: 'NotebookLM',
-    sections: [
-      {
-        heading: 'Mục đích',
-        body: 'Trích dẫn và đối chiếu nội dung lý thuyết từ giáo trình Lý luận chính trị (đặc biệt là giáo trình Triết học Mác – Lênin) để làm nền tảng lập luận.'
-      },
-      {
-        heading: 'Link prompt/log',
-        links: [
-          {
-            label: 'Prompt/Log',
-            url: 'https://notebooklm.google.com/notebook/00396724-e674-479e-813f-803cec4d0329'
-          }
-        ]
-      },
-      {
-        heading: 'Kết quả',
-        body: 'Đoạn trích và ý chính phục vụ lập luận và trích dẫn.'
-      },
-      {
-        heading: 'Chỉnh sửa của sinh viên',
-        body: 'Đối chiếu lại với bản giáo trình gốc, ghi rõ chương–trang; nội dung không xác minh được sẽ bị loại bỏ hoặc viết lại theo nguồn chuẩn.',
-        highlight: true
-      }
-    ]
+    purpose: 'Sử dụng để trích dẫn và đối chiếu nội dung lý thuyết từ tập sách Tư tưởng Hồ Chí Minh nhằm làm nền tảng lập luận và kiểm chứng thông tin.',
+    promptLinks: [
+      { label: 'Notebook 1', url: 'https://notebooklm.google.com/notebook/00396724-e674-479e-813f-803cec4d0329' },
+      { label: 'Notebook 2', url: '#' },
+    ],
+    result: 'Đoạn trích và ý chính phục vụ lập luận và trích dẫn.',
+    studentEdit: 'Đối chiếu lại với bản giáo trình gốc, ghi rõ chương–trang; nội dung không xác minh được sẽ bị loại bỏ hoặc viết lại theo nguồn chuẩn.',
   },
   {
     id: 'chatgpt',
-    badge: 'b)',
     icon: '💬',
     name: 'ChatGPT',
-    sections: [
-      {
-        heading: 'Mục đích',
-        body: 'Soạn nội dung cho phần thuyết trình (dàn ý, lời dẫn, ghi chú cho người trình bày).'
-      },
-      {
-        heading: 'Link prompt/log',
-        links: [
-          {
-            label: 'Prompt/Log 1',
-            url: 'https://chatgpt.com/share/e/6932ac02-fa44-8000-87db-41306d8f476a'
-          },
-          {
-            label: 'Prompt/Log 2',
-            url: 'https://chatgpt.com/share/e/6932d355-b2bc-800b-8fd6-386fd4c52fd2'
-          },
-          {
-            label: 'Prompt/Log 3',
-            url: 'https://chatgpt.com/share/e/6933ef02-76f8-800e-83d6-4db8f8924643'
-          }
-        ]
-      },
-      {
-        heading: 'Kết quả',
-        body: 'Bản nháp dàn ý, lời thuyết trình và gợi ý cấu trúc nội dung.'
-      },
-      {
-        heading: 'Chỉnh sửa của sinh viên',
-        body: 'Rút gọn, chỉnh văn phong, thay hoặc loại các khẳng định chưa có nguồn; bổ sung trích dẫn từ NotebookLM và văn bản chính thống, ghi rõ phần đã biên soạn lại trước khi đăng.',
-        highlight: true
-      }
-    ]
-  },
-  {
-    id: 'deepseek',
-    badge: 'c)',
-    icon: '🔎',
-    name: 'Deepseek',
-    sections: [
-      {
-        heading: 'Mục đích',
-        body: 'Tra cứu thông tin để định hướng tìm nguồn và kiểm chứng sơ bộ.'
-      },
-      {
-        heading: 'Link prompt/log',
-        links: [
-          {
-            label: 'Prompt/Log',
-            url: 'https://chat.deepseek.com/share/f10p0qzrbxwu2tny2o'
-          }
-        ]
-      },
-      {
-        heading: 'Kết quả',
-        body: 'Gợi ý thông tin và hướng tìm kiếm.'
-      },
-      {
-        heading: 'Chỉnh sửa của sinh viên',
-        body: 'Chỉ giữ nội dung đối chiếu được với giáo trình, nghị quyết và văn bản chính thống; mọi thông tin không truy vết được nguồn đều bị loại.',
-        highlight: true
-      }
-    ]
+    purpose: 'Soạn nội dung cho phần thuyết trình (dàn ý, lời dẫn, ghi chú cho người thuyết trình).',
+    promptLinks: [
+      { label: 'Chat 1', url: 'https://chatgpt.com/share/e/6932ac02-fa44-8000-87db-41306d8f476a' },
+      { label: 'Chat 2', url: 'https://chatgpt.com/share/e/6932d355-b2bc-800b-8fd6-386fd4c52fd2' },
+      { label: 'Chat 3', url: 'https://chatgpt.com/share/e/6933ef02-76f8-800e-83d6-4db8f8924643' },
+    ],
+    result: 'Bản nháp dàn ý và nội dung thuyết trình giúp trình bày vấn đề rõ ràng, dễ hiểu hơn.',
+    studentEdit: 'Rút gọn văn phong, chỉnh sửa các phần thuật ngữ chưa rõ nghĩa; bổ sung trích dẫn chính xác, ghi rõ nguồn và số trang trích dẫn từ văn bản chính thống.',
   },
   {
     id: 'lovable',
-    badge: 'd)',
     icon: '🧩',
     name: 'Lovable',
-    sections: [
-      {
-        heading: 'Mục đích',
-        body: 'Dàn trang nội dung dự án lên website, bảo đảm bố cục trực quan và tương thích đa thiết bị.'
-      },
-      {
-        heading: 'Kết quả',
-        body: 'Khung bố cục trang web và cách trình bày các phần nội dung.'
-      },
-      {
-        heading: 'Chỉnh sửa của sinh viên',
-        body: 'Điều chỉnh bố cục, kiểu chữ và nội dung hiển thị; toàn bộ dữ liệu học thuật được kiểm chứng trước khi đăng, mọi đầu ra tự động đều được biên tập lại.',
-        highlight: true
-      }
-    ]
+    purpose: 'Hỗ trợ trình bày nội dung dự án lên website trực quan, dễ đọc.',
+    result: 'Khung bố cục trang web và cấu trúc trình bày các nội dung.',
+    studentEdit: 'Điều chỉnh bố cục, kiểu chữ và nội dung hiển thị; toàn bộ dữ liệu học thuật được kiểm chứng trước khi đăng.',
   },
-  {
-    id: 'pinterest',
-    badge: 'e)',
-    icon: '🖼️',
-    name: 'Pinterest',
-    sections: [
-      {
-        heading: 'Mục đích',
-        body: 'Tham khảo ý tưởng hình minh họa và sơ đồ trình bày.'
-      },
-      {
-        heading: 'Kết quả',
-        body: 'Danh sách ý tưởng thị giác hỗ trợ việc lựa chọn hình ảnh.'
-      },
-      {
-        heading: 'Chỉnh sửa của sinh viên',
-        body: 'Chỉ sử dụng hình ảnh hợp lệ (có phép, nguồn rõ ràng hoặc tự tạo) và ghi nguồn dưới mỗi hình sử dụng.',
-        highlight: true
-      }
-    ]
-  }
 ];
 
 const verificationSteps = [
   {
     number: '1',
-    title: 'Đánh dấu nội dung',
-    description: 'Ghi nhận mọi thông tin do AI gợi ý (nhận định, số liệu, trích dẫn).'
+    title: 'Đánh dấu nội dung AI',
+    description: 'Mọi nội dung do công cụ trí tuệ nhân tạo đề xuất (nhận định, trích dẫn, số liệu) được đánh dấu.',
   },
   {
     number: '2',
     title: 'Đối chiếu nguồn chính thống',
-    description: 'Kiểm chứng bằng giáo trình Lý luận chính trị, nghị quyết, văn bản chính thức và ghi rõ chương/trang.'
+    description: 'Đối chiếu với Giáo trình Tư tưởng Hồ Chí Minh, nghị quyết và các văn bản chính thức.',
   },
   {
     number: '3',
     title: 'Kết luận kiểm chứng',
-    description: 'Phân loại Hợp lệ / Chưa đủ căn cứ / Sai, tránh sử dụng thông tin chưa rõ nguồn gốc.'
+    description: 'Phân loại nội dung: Hợp lệ / Chưa đủ căn cứ / Sai.',
   },
   {
     number: '4',
-    title: 'Chỉnh sửa & chịu trách nhiệm',
-    description: 'Chỉ giữ nội dung đã xác minh; nhóm chịu trách nhiệm về bản cuối cùng.'
-  }
+    title: 'Chỉnh sửa và chịu trách nhiệm',
+    description: 'Chỉ giữ lại nội dung đã xác minh, nhóm chịu trách nhiệm về bản cuối cùng.',
+  },
 ];
 
 const assistHighlights = [
   {
     icon: '📚',
     title: 'NotebookLM',
-    description: 'Hỗ trợ trích dẫn nhanh và đối chiếu giáo trình Lý luận chính trị.'
+    description: 'Hỗ trợ trích dẫn và đối chiếu với giáo trình.',
   },
   {
     icon: '💬',
     title: 'ChatGPT',
-    description: 'Gợi ý dàn ý, lời dẫn giúp cấu trúc phần thuyết trình mạch lạc.'
+    description: 'Hỗ trợ soạn nháp dàn ý và nội dung thuyết trình.',
   },
   {
     icon: '🧩',
     title: 'Lovable',
-    description: 'Đề xuất bố cục trang web, giúp trình bày nội dung dễ đọc.'
-  }
+    description: 'Hỗ trợ trình bày website trực quan, dễ đọc.',
+  },
 ];
 
 const references = [
-  {
-    label: '[1]',
-    text: 'Phạm Văn Đức (Chủ biên). (2019). Giáo trình Triết học Mác – Lênin. Hà Nội.',
-    url: 'https://drive.google.com/file/d/1hmjl7cBm5P3rmKAeTFAdKyQnygWtnRYC/view?pli=1'
-  },
-  {
-    label: '[2]',
-    text: 'Marxists Internet Archive. (n.d.). Cross-Language Section.',
-    url: 'https://www.marxists.org/xlang/index.htm'
-  },
-  {
-    label: '[3]',
-    text: 'VOVworld. (2013, April 8). Wet rice cultivation of the Viet people.',
-    url: 'https://vovworld.vn/en-US/colorful-vietnam-vietnams-54-ethnic-groups/wet-rice-cultivation-of-the-viet-people-146920.vov'
-  },
-  {
-    label: '[4]',
-    text: 'Viện Hán-Nôm & Văn hóa (VASS). (n.d.). Địa lý văn hóa.',
-    url: 'https://ihs.vass.gov.vn/Contents/tintucsukien/Lists/DiaLyVanHoa/DispForm.aspx?ID=2&ContentTypeId=0x01005D0CD111C0019D44BE40A8F47C65FD8F0400994DE620434316409BE5D3692D1D80B3'
-  },
-  {
-    label: '[5]',
-    text: 'Rever (blog). (n.d.). Các tỉnh miền Nam Việt Nam – Đặc điểm chi tiết từng tỉnh.',
-    url: 'https://blog.rever.vn/cac-tinh-mien-nam-viet-nam-dac-diem-chi-tiet-tung-tinh-cap-nhat'
-  },
-  {
-    label: '[6]',
-    text: 'Mentoring. (2022, March 26). Tính cách của con người ở 3 miền Bắc, Trung, Nam.',
-    url: 'https://mentoring.edu.vn/tinh-cach-con-nguoi-3-mien-1648313556'
-  },
-  {
-    label: '[7]',
-    text: 'Báo Dân Tộc Miền Núi. (n.d.). Bắc Bộ — Vài nét tổng quan.',
-    url: 'https://dantocmiennui.baotintuc.vn/bac-bo-vai-net-tong-quan-post130641.html'
-  },
-  {
-    label: '[8]',
-    text: 'Pháp Luật TP.HCM. (n.d.). Sài Gòn: Vùng đất thoát nhỏ ngay từ đầu.',
-    url: 'https://plo.vn/sai-gon-vung-dat-thoat-nho-ngay-tu-dau-post442671.html'
-  },
-  {
-    label: '[9]',
-    text: 'Pháp Luật TP.HCM. (n.d.). Nam Bộ — "Tỉnh đất, tỉnh người".',
-    url: 'https://plo.vn/nam-bo-tinh-dat-tinh-nguoi-post423250.html'
-  }
+  { label: '[1]', text: 'Anfinson. (n.d.). Tiểu sử văn hoá Hồ Chí Minh được ghi nhận bởi UNESCO.', url: '#' },
+  { label: '[2]', text: 'Bảo tàng Lịch sử Quốc gia. (n.d.). Nền giáo dục của nước Việt Nam độc lập từ tháng 9/1945 đến tháng 12/1946 (kỳ 1).', url: '#' },
+  { label: '[3]', text: 'Bộ Giáo dục và Đào tạo. (2019). Giáo trình Tư tưởng Hồ Chí Minh. Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
+  { label: '[4]', text: 'Báo Quân đội Nhân dân. (n.d.). Con đường chính trị hy sinh cùng đất nước.', url: '#' },
+  { label: '[5]', text: 'Báo Thanh Niên. (2024). Bác gái mải hiểm cắm súc nghe lăng nại, đơn kiện bất lý ở Nghệ An.', url: '#' },
+  { label: '[6]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (tập 9). Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
+  { label: '[7]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (tập 5). Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
+  { label: '[8]', text: 'Học viện Chính trị Quốc gia Hồ Chí Minh. (n.d.). Ho Chi Minh\'s Viewpoints on the building and development of Vietnamese culture.', url: '#' },
+  { label: '[9]', text: 'Kinh tế & Môi trường. (n.d.). Nhật tường tảm hoàng và những du sản quang dấu tổnh dựng dậy.', url: '#' },
+  { label: '[10]', text: 'Luật thiểu thơmse. (n.d.). Tư tưởng Hồ Chí Minh – chỉ dẫn cho việc xây dựng và phát triển Nhà nước Việt Nam.', url: '#' },
+  { label: '[11]', text: 'National Library of Vietnam. (n.d.). Hồ Chí Minh – Anh hùng giải phóng dân tộc, Nhà văn hoá kiệt xuất.', url: '#' },
+  { label: '[12]', text: 'Tạp chí Cộng sản. (n.d.). Ensuring the people\'s cultural welfare in the process of international integration.', url: '#' },
+  { label: '[13]', text: 'Thanh vương Việt Nam. (n.d.). Tầm vóc và giá trị lịch sử – chính trị của Cách mạng Tháng Tám 1945.', url: '#' },
 ];
 
 export function AIUsage() {
   return (
-    <section className="container section ai-usage">
-      <header className="card ai-usage-hero">
-        <h2>AI Usage Documentation</h2>
+    <section className="ai-usage-page">
+      {/* Hero Header */}
+      <header className="ai-hero-header">
+        <span className="ai-hero-badge">⚙️ AI Usage Declaration</span>
+        <h1 className="ai-hero-title">
+          Mục tiêu sử dụng <span className="text-accent">Trí tuệ</span>
+          <br />
+          <span className="text-accent">Nhân tạo</span>
+        </h1>
+        <p className="ai-hero-desc">
+          Nhóm sử dụng trí tuệ nhân tạo với vai trò hỗ trợ trong quá trình thực hiện bài tập. Trí tuệ nhân tạo không được sử dụng để thay thế hoàn toàn việc nghiên cứu, phân tích và viết nội dung học thuật.
+        </p>
       </header>
 
-      <div className="card ai-usage-goal">
-        <h3>Mục tiêu sử dụng trí tuệ nhân tạo</h3>
-        <p>
-          Nhóm dùng AI như <strong>trợ lý</strong> hỗ trợ từng bước làm bài (tìm trích dẫn, tra cứu, soạn nháp, thiết kế trình bày).
-          AI không thay thế nghiên cứu học thuật hay tiếng nói chuyên môn; nhóm chịu trách nhiệm toàn bộ cho sản phẩm cuối cùng.
-        </p>
-      </div>
+      <div className="ai-main-content">
+        {/* Vai trò AI */}
+        <section className="ai-role-section">
+          <div className="ai-role-icon">⚙️</div>
+          <div className="ai-role-content">
+            <h3>Vai trò của AI trong dự án</h3>
+            <ul className="ai-role-list">
+              <li>✓ Trích dẫn nội dung lý thuyết và tra cứu tài liệu</li>
+              <li>✓ Soạn nháp nội dung thuyết trình</li>
+              <li>✓ Hỗ trợ dàn trang website</li>
+            </ul>
+            <p className="ai-role-note">Nhóm chịu trách nhiệm đối với toàn bộ nội dung cuối cùng được công bố.</p>
+          </div>
+        </section>
 
-      <div className="ai-tools-grid">
-        {toolCards.map((tool) => (
-          <article key={tool.id} className="card ai-tool-card">
-            <header className="ai-tool-header">
-              <div className="ai-tool-icon" aria-hidden>{tool.icon}</div>
-              <div>
-                <span className="ai-tool-badge">{tool.badge}</span>
-                <h4>{tool.name}</h4>
-              </div>
-            </header>
+        {/* Công cụ đã sử dụng */}
+        <section className="ai-tools-section">
+          <h2 className="ai-section-title">✦ Công cụ đã sử dụng</h2>
+          <p className="ai-section-desc">Chi tiết về từng công cụ AI được sử dụng trong dự án và cách thức kiểm soát nội dung.</p>
 
-            <div className="ai-tool-sections">
-              {tool.sections.map((section) => (
-                <div
-                  key={`${tool.id}-${section.heading}`}
-                  className={`ai-tool-section${section.highlight ? ' highlight' : ''}`}
-                >
-                  <p className="ai-tool-heading">{section.heading}</p>
-                  {section.body && <p className="ai-tool-body">{section.body}</p>}
-                  {section.links && (
-                    <div className="ai-tool-links">
-                      {section.links.map((link) => (
-                        <a key={link.url} className="source-link" href={link.url} target="_blank" rel="noreferrer">
-                          {link.label}
-                        </a>
-                      ))}
+          <div className="ai-tools-grid-new">
+            {toolCards.map((tool) => (
+              <article key={tool.id} className="ai-tool-card-new">
+                <header className="ai-tool-header-new">
+                  <span className="ai-tool-icon-new">{tool.icon}</span>
+                  <h4 className="ai-tool-name-new">{tool.name}</h4>
+                </header>
+
+                <div className="ai-tool-body-new">
+                  <div className="ai-tool-field">
+                    <span className="ai-field-label">Mục đích</span>
+                    <p>{tool.purpose}</p>
+                  </div>
+
+                  {tool.promptLinks && (
+                    <div className="ai-tool-field">
+                      <span className="ai-field-label">Link prompt/log</span>
+                      <div className="ai-prompt-links">
+                        {tool.promptLinks.map((link, idx) => (
+                          <a key={idx} href={link.url} target="_blank" rel="noreferrer" className="ai-prompt-link">
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   )}
+
+                  <div className="ai-tool-field">
+                    <span className="ai-field-label">Kết quả</span>
+                    <p>{tool.result}</p>
+                  </div>
+
+                  <div className="ai-tool-field ai-field-highlight">
+                    <span className="ai-field-label">Chỉnh sửa của sinh viên</span>
+                    <p>{tool.studentEdit}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section className="card ai-usage-steps">
-        <h3>Quy trình 4 bước kiểm chứng</h3>
-        <div className="ai-steps-grid">
-          {verificationSteps.map((step) => (
-            <div key={step.number} className="ai-step-card">
-              <span className="ai-step-number">{step.number}</span>
-              <h4>{step.title}</h4>
-              <p>{step.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+        {/* Quy trình kiểm chứng */}
+        <section className="ai-verify-section">
+          <h2 className="ai-section-title">◎ Quy trình kiểm chứng thông tin</h2>
+          <p className="ai-section-desc">Nhóm sử dụng quy trình kiểm chứng 4 bước để đảm bảo tính chính xác của thông tin.</p>
 
-      <section className="card ai-support">
-        <h3>AI hỗ trợ quy trình</h3>
-        <div className="ai-highlight-grid">
-          {assistHighlights.map((item) => (
-            <div key={item.title} className="ai-highlight-card">
-              <div className="ai-highlight-icon" aria-hidden>
-                {item.icon}
+          <div className="ai-verify-grid">
+            {verificationSteps.map((step) => (
+              <div key={step.number} className="ai-verify-card">
+                <span className="ai-verify-number">{step.number}</span>
+                <h4>{step.title}</h4>
+                <p>{step.description}</p>
               </div>
-              <div>
+            ))}
+          </div>
+        </section>
+
+        {/* Ứng dụng sáng tạo */}
+        <section className="ai-creative-section">
+          <h2 className="ai-section-title">✦ Ứng dụng sáng tạo</h2>
+          <p className="ai-section-desc">Trí tuệ nhân tạo được sử dụng để hỗ trợ quá trình học tập và trình bày.</p>
+
+          <div className="ai-creative-grid">
+            {assistHighlights.map((item) => (
+              <div key={item.title} className="ai-creative-card">
+                <span className="ai-creative-icon">{item.icon}</span>
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="ai-warning">
-          <strong>Lưu ý:</strong> Trí tuệ nhân tạo chỉ đóng vai trò hỗ trợ. Các kết luận học thuật và nội dung trình bày đều do nhóm
-          kiểm chứng và chịu trách nhiệm.
-        </div>
-      </section>
+            ))}
+          </div>
 
-      <section className="card ai-commitment-card">
-        <h3>Cam kết liêm chính học thuật</h3>
-        <p>
-          Nhóm cam kết không để AI làm thay hoàn toàn. Mọi thông tin đăng tải đều được đối chiếu với giáo trình Lý luận chính trị,
-          nghị quyết và văn bản chính thống; nội dung chưa xác thực sẽ không được sử dụng.
-        </p>
-        <ul>
-          <li>Đánh dấu rõ phần do AI gợi ý và ghi chú quá trình kiểm chứng.</li>
-          <li>Ưu tiên nguồn chính thống; thông tin không truy vết được sẽ loại bỏ.</li>
-          <li>Cập nhật minh bạch nhật ký sử dụng AI và trích dẫn kèm liên kết.</li>
-        </ul>
-      </section>
+          <div className="ai-creative-note">
+            Trí tuệ nhân tạo chỉ đóng vai trò hỗ trợ việc nghiên cứu, sự phân tích và sự chịu trách nhiệm học thuật của nhóm.
+          </div>
+        </section>
 
-      <section className="card ai-references">
-        <h3>Tài liệu tham khảo</h3>
-        <ul className="ai-reference-list">
-          {references.map((ref) => (
-            <li key={ref.label}>
-              <span className="ai-reference-label">{ref.label}</span>
-              <span className="ai-reference-text">{ref.text}</span>
-              <a className="source-link" href={ref.url} target="_blank" rel="noreferrer">
-                Link
+        {/* Cam kết liêm chính */}
+        <section className="ai-commitment-section">
+          <h2 className="ai-section-title">◎ Cam kết liêm chính học thuật</h2>
+
+          <div className="ai-commitment-box">
+            <div className="ai-commitment-icon">📋</div>
+            <div className="ai-commitment-content">
+              <p>
+                Nhóm cam kết không để trí tuệ nhân tạo làm thay hoàn toàn quá trình nghiên cứu và viết bài. Mọi nội dung học thuật và kết luận được công bố đều đã được kiểm chứng dựa trên Giáo trình Tư tưởng Hồ Chí Minh, các nghị quyết và văn bản chính thống.
+              </p>
+              <a href="#" className="ai-commitment-link">
+                Xem nhật ký kiểm chứng, chỉnh sửa và nguồn gốc của các sản phẩm cuối cùng →
               </a>
-            </li>
-          ))}
-        </ul>
-      </section>
+            </div>
+          </div>
+        </section>
+
+        {/* Tài liệu tham khảo */}
+        <section className="ai-references-section">
+          <h2 className="ai-section-title">📚 Tài liệu tham khảo</h2>
+          <p className="ai-section-desc">Danh sách các nguồn tài liệu được sử dụng trong dự án.</p>
+
+          <ul className="ai-references-list">
+            {references.map((ref) => (
+              <li key={ref.label} className="ai-reference-item">
+                <span className="ai-ref-label">{ref.label}</span>
+                <span className="ai-ref-text">{ref.text}</span>
+                {ref.url && ref.url !== '#' && (
+                  <a href={ref.url} target="_blank" rel="noreferrer" className="ai-ref-link">↗</a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer className="ai-footer">
+        <p>© 2025 – Dự án Tư tưởng Hồ Chí Minh</p>
+        <p className="ai-footer-note">Tài liệu này thể hiện cam kết minh bạch trong việc sử dụng trí tuệ nhân tạo cho mục đích học thuật.</p>
+        <span className="ai-footer-badge">Built with ❤ Lovable</span>
+      </footer>
     </section>
   );
 }

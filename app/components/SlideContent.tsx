@@ -53,6 +53,19 @@ export function SlideContent({
   const { layout, content } = slide;
 
   switch (layout) {
+    case "cover":
+      return (
+        <div className="layout-cover">
+          {content.image && (
+            <img
+              src={content.image}
+              alt={slide.title || "Cover"}
+              className="cover-image"
+            />
+          )}
+        </div>
+      );
+
     case "title":
       return (
         <div
@@ -207,8 +220,20 @@ export function SlideContent({
               </div>
             ))}
           </div>
+          {content.notes?.length ? (
+            <div style={{ marginTop: 16, fontStyle: "italic", fontSize: "0.95rem", opacity: 0.75 }}>
+              {content.notes.map((note: string, idx: number) => (
+                <div key={idx} style={{ marginBottom: 6 }}>
+                  {note}
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       );
+
+    case "tabs":
+      return <TabsLayout content={content} />;
 
     case "economy-culture-choice":
       return (
@@ -564,10 +589,32 @@ export function SlideContent({
     case "quote":
       return (
         <div className="layout-quote">
-          <blockquote>
-            <p className="quote-text">"{content.quote}"</p>
-            <footer className="quote-author">{content.author}</footer>
-          </blockquote>
+          {content.intro && <p className="quote-intro">{content.intro}</p>}
+
+          {content.highlightText ? (
+            <div className="quote-highlight-box">
+              <p className="quote-highlight-text">{content.highlightText}</p>
+            </div>
+          ) : (
+            <blockquote>
+              <p className="quote-text">"{content.quote}"</p>
+              {content.author && <footer className="quote-author">{content.author}</footer>}
+            </blockquote>
+          )}
+
+          {content.outro && <p className="quote-outro">{content.outro}</p>}
+          {content.citation && <p className="quote-citation">{content.citation}</p>}
+
+          {content.image && (
+            <div className="quote-image-wrapper">
+              <figure style={{ margin: 0 }}>
+                <img src={content.image} alt="" className="quote-image" />
+                {content.imageCaption && (
+                  <figcaption className="quote-image-caption">{content.imageCaption}</figcaption>
+                )}
+              </figure>
+            </div>
+          )}
         </div>
       );
 
@@ -610,7 +657,13 @@ export function SlideContent({
               }}
               style={{ cursor: "pointer" }}
             >
-              <div className="highlight-icon">{box.icon}</div>
+              <div className="highlight-icon">
+                {box.icon?.startsWith("/") ? (
+                  <img src={box.icon} alt={box.title} className="highlight-icon-img" />
+                ) : (
+                  box.icon
+                )}
+              </div>
               <h4>{box.title}</h4>
               <p style={{ fontSize: "0.9rem", color: "#666", marginTop: "0.5rem" }}>Click để xem chi tiết</p>
             </div>
@@ -719,7 +772,7 @@ export function SlideContent({
                     {rel.direction === "left" && <span className="arrow-symbol">←</span>}
                     {rel.direction === "both" && <span className="arrow-symbol">↻</span>}
                   </div>
-                    <span className="arrow-label">{rel.label}</span>
+                  <span className="arrow-label">{rel.label}</span>
                 </div>
               ))}
             </div>
@@ -910,6 +963,69 @@ export function SlideContent({
   }
 }
 
+type TabsLayoutProps = {
+  content: any;
+};
+
+function TabsLayout({ content }: TabsLayoutProps) {
+  const tabs = content?.tabs || [];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!tabs.length) {
+    return null;
+  }
+
+  const activeTab = tabs[Math.min(activeIndex, tabs.length - 1)];
+
+  return (
+    <div className="layout-tabs">
+      <div className="tabs-header">
+        {tabs.map((tab: any, idx: number) => (
+          <button
+            key={tab.title || idx}
+            type="button"
+            className={idx === activeIndex ? "active" : ""}
+            onClick={() => setActiveIndex(idx)}
+          >
+            {tab.title}
+          </button>
+        ))}
+      </div>
+      <div className="tab-content">
+        {activeTab?.text && <p>{activeTab.text}</p>}
+        {content?.citation && (
+          <p style={{ marginTop: "0.75rem", fontStyle: "italic", opacity: 0.75 }}>
+            {content.citation}
+          </p>
+        )}
+      </div>
+      {(content?.extraTitle || content?.extraText || content?.extraQuote) && (
+        <div className="tab-content" style={{ marginTop: "1.5rem" }}>
+          {content?.extraTitle && <h3>{content.extraTitle}</h3>}
+          {content?.extraText && <p>{content.extraText}</p>}
+          {content?.extraQuote && (
+            <div style={{ marginTop: "0.75rem" }}>
+              <p style={{ fontStyle: "italic", margin: 0 }}>{content.extraQuote}</p>
+              {content?.extraQuoteAuthor && (
+                <p
+                  style={{
+                    margin: "0.4rem 0 0",
+                    fontWeight: 600,
+                    opacity: 0.8,
+                    textAlign: "right",
+                  }}
+                >
+                  {content.extraQuoteAuthor}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 type ImageCarouselLayoutProps = {
   slide: Slide;
   content: any;
@@ -926,47 +1042,51 @@ function ImageCarouselLayout({ slide, content }: ImageCarouselLayoutProps) {
   const indicatorHeight = 48;
   const hasConclusion = Boolean(currentPoint?.conclusion);
 
-  const renderPointContent = (point: any) => (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-      <p className="slide-point-item" style={{ fontSize: "1.15rem", minHeight: 60, textAlign: "center", margin: 0 }}>
-        {point?.text || point}
-      </p>
-      {point?.citation && (
-        <p className="slide-point-item" style={{ fontSize: "0.95rem", textAlign: "center", margin: 0, opacity: 0.75 }}>
-          {point.citation}
+  const renderPointContent = (point: any) => {
+    const citationText = point?.citation || content?.citation;
+
+    return (
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        <p className="slide-point-item" style={{ fontSize: "1.15rem", minHeight: 60, textAlign: "center", margin: 0 }}>
+          {point?.text || point}
         </p>
-      )}
-      {point?.conclusion && (
-        <div
-          className="carousel-conclusion"
-          style={{
-            paddingTop: 24,
-            color: "#2a7",
-            fontWeight: 500,
-            fontStyle: "italic",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            boxSizing: "border-box",
-          }}
-        >
+        {citationText && (
+          <p className="slide-point-item" style={{ fontSize: "0.95rem", textAlign: "center", margin: 0, opacity: 0.75 }}>
+            {citationText}
+          </p>
+        )}
+        {point?.conclusion && (
           <div
+            className="carousel-conclusion"
             style={{
-              background: "#f6faf7",
-              borderRadius: 12,
-              padding: "18px 22px 14px 22px",
-              border: "1px solid #e0eee5",
-              maxWidth: 420,
+              paddingTop: 24,
+              color: "#2a7",
+              fontWeight: 500,
+              fontStyle: "italic",
               width: "100%",
-              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              boxSizing: "border-box",
             }}
           >
-            {point.conclusion}
+            <div
+              style={{
+                background: "#f6faf7",
+                borderRadius: 12,
+                padding: "18px 22px 14px 22px",
+                border: "1px solid #e0eee5",
+                maxWidth: 420,
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              {point.conclusion}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const calculateMaxHeight = () => {
@@ -1220,6 +1340,7 @@ function EconomyCultureDetailLayout({
 
   const currentEvidencePage = evidencePages[evidenceIndex] || [];
   const currentSummary = activeContent.summaries?.[evidenceIndex];
+  const hasMultipleEvidencePages = evidencePages.length > 1;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
@@ -1233,21 +1354,23 @@ function EconomyCultureDetailLayout({
 
       <div style={{ background: "#f0f0f0", borderRadius: 16, padding: "1.25rem", border: "1px solid #e0e0e0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <button
-            type="button"
-            onClick={() => setEvidenceIndex((prev) => (prev === 0 ? evidencePages.length - 1 : prev - 1))}
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: "50%",
-              border: "1px solid #ccc",
-              background: "#fff",
-              cursor: "pointer",
-              fontSize: "1.2rem",
-            }}
-          >
-            ‹
-          </button>
+          {hasMultipleEvidencePages && (
+            <button
+              type="button"
+              onClick={() => setEvidenceIndex((prev) => (prev === 0 ? evidencePages.length - 1 : prev - 1))}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+              }}
+            >
+              ‹
+            </button>
+          )}
 
           <div style={{ flex: 1, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "1rem" }}>
             {currentEvidencePage.map((item: any, idx: number) => (
@@ -1262,21 +1385,23 @@ function EconomyCultureDetailLayout({
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={() => setEvidenceIndex((prev) => (prev === evidencePages.length - 1 ? 0 : prev + 1))}
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: "50%",
-              border: "1px solid #ccc",
-              background: "#fff",
-              cursor: "pointer",
-              fontSize: "1.2rem",
-            }}
-          >
-            ›
-          </button>
+          {hasMultipleEvidencePages && (
+            <button
+              type="button"
+              onClick={() => setEvidenceIndex((prev) => (prev === evidencePages.length - 1 ? 0 : prev + 1))}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+              }}
+            >
+              ›
+            </button>
+          )}
         </div>
 
         {currentEvidencePage.some((item: any) => item.url) &&
