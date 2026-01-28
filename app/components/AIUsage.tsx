@@ -17,8 +17,8 @@ const toolCards: ToolCard[] = [
     name: 'NotebookLM',
     purpose: 'Sử dụng để trích dẫn và đối chiếu nội dung lý thuyết từ tập sách Tư tưởng Hồ Chí Minh nhằm làm nền tảng lập luận và kiểm chứng thông tin.',
     promptLinks: [
-      { label: 'Notebook 1', url: 'https://notebooklm.google.com/notebook/00396724-e674-479e-813f-803cec4d0329' },
-      { label: 'Notebook 2', url: '#' },
+      { label: 'Notebook 1', url: 'https://notebooklm.google.com/notebook/cbe61f0c-3f89-4191-80d6-68369e4fc207' },
+      { label: 'Notebook 2', url: 'https://notebooklm.google.com/notebook/e3f517d8-bca0-4b19-a2f5-8e9bc837e283' },
     ],
     result: 'Đoạn trích và ý chính phục vụ lập luận và trích dẫn.',
     studentEdit: 'Đối chiếu lại với bản giáo trình gốc, ghi rõ chương–trang; nội dung không xác minh được sẽ bị loại bỏ hoặc viết lại theo nguồn chuẩn.',
@@ -29,9 +29,9 @@ const toolCards: ToolCard[] = [
     name: 'ChatGPT',
     purpose: 'Soạn nội dung cho phần thuyết trình (dàn ý, lời dẫn, ghi chú cho người thuyết trình).',
     promptLinks: [
-      { label: 'Chat 1', url: 'https://chatgpt.com/share/e/6932ac02-fa44-8000-87db-41306d8f476a' },
-      { label: 'Chat 2', url: 'https://chatgpt.com/share/e/6932d355-b2bc-800b-8fd6-386fd4c52fd2' },
-      { label: 'Chat 3', url: 'https://chatgpt.com/share/e/6933ef02-76f8-800e-83d6-4db8f8924643' },
+      { label: 'Chat 1', url: 'https://chatgpt.com/share/e/6974d329-5888-8010-b8bd-351369131f38' },
+      { label: 'Chat 2', url: 'https://chatgpt.com/share/e/6974d605-7bb0-8005-bce3-4061e000e0d9' },
+      { label: 'Chat 3', url: 'https://chatgpt.com/c/696601f0-e0dc-8321-ad99-602405491b27' },
     ],
     result: 'Bản nháp dàn ý và nội dung thuyết trình giúp trình bày vấn đề rõ ràng, dễ hiểu hơn.',
     studentEdit: 'Rút gọn văn phong, chỉnh sửa các phần thuật ngữ chưa rõ nghĩa; bổ sung trích dẫn chính xác, ghi rõ nguồn và số trang trích dẫn từ văn bản chính thống.',
@@ -88,19 +88,19 @@ const assistHighlights = [
 ];
 
 const references = [
-  { label: '[1]', text: 'Anfinson. (n.d.). Tiểu sử văn hoá Hồ Chí Minh được ghi nhận bởi UNESCO.', url: '#' },
-  { label: '[2]', text: 'Bảo tàng Lịch sử Quốc gia. (n.d.). Nền giáo dục của nước Việt Nam độc lập từ tháng 9/1945 đến tháng 12/1946 (kỳ 1).', url: '#' },
-  { label: '[3]', text: 'Bộ Giáo dục và Đào tạo. (2019). Giáo trình Tư tưởng Hồ Chí Minh. Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
-  { label: '[4]', text: 'Báo Quân đội Nhân dân. (n.d.). Con đường chính trị hy sinh cùng đất nước.', url: '#' },
-  { label: '[5]', text: 'Báo Thanh Niên. (2024). Bác gái mải hiểm cắm súc nghe lăng nại, đơn kiện bất lý ở Nghệ An.', url: '#' },
-  { label: '[6]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (tập 9). Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
-  { label: '[7]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (tập 5). Nhà xuất bản Chính trị quốc gia Sự thật.', url: '#' },
-  { label: '[8]', text: 'Học viện Chính trị Quốc gia Hồ Chí Minh. (n.d.). Ho Chi Minh\'s Viewpoints on the building and development of Vietnamese culture.', url: '#' },
-  { label: '[9]', text: 'Kinh tế & Môi trường. (n.d.). Nhật tường tảm hoàng và những du sản quang dấu tổnh dựng dậy.', url: '#' },
-  { label: '[10]', text: 'Luật thiểu thơmse. (n.d.). Tư tưởng Hồ Chí Minh – chỉ dẫn cho việc xây dựng và phát triển Nhà nước Việt Nam.', url: '#' },
-  { label: '[11]', text: 'National Library of Vietnam. (n.d.). Hồ Chí Minh – Anh hùng giải phóng dân tộc, Nhà văn hoá kiệt xuất.', url: '#' },
-  { label: '[12]', text: 'Tạp chí Cộng sản. (n.d.). Ensuring the people\'s cultural welfare in the process of international integration.', url: '#' },
-  { label: '[13]', text: 'Thanh vương Việt Nam. (n.d.). Tầm vóc và giá trị lịch sử – chính trị của Cách mạng Tháng Tám 1945.', url: '#' },
+  { label: '[1]', text: 'Arttimes. (n.d.). Tầm vóc văn hoá Hồ Chí Minh dưới góc nhìn UNESCO.', url: 'https://arttimes.vn/goc-nhin/tam-voc-van-hoa-ho-chi-minh-duoi-goc-nhin-uneco-c50a29594.html' },
+  { label: '[2]', text: 'Bảo tàng Lịch sử Quốc gia. (n.d.). Nền giáo dục của nước Việt Nam độc lập từ tháng 9/1945 đến tháng 12/1946 (Kỳ 1): Kích hoạt những tiềm năng giáo dục vốn có.', url: 'https://baotanglichsu.vn/vi/Articles/3096/73445' },
+  { label: '[3]', text: 'Bộ Giáo dục và Đào tạo. (2021). Giáo trình Tư tưởng Hồ Chí Minh (Dành cho bậc đại học hệ không chuyên lý luận chính trị). Nhà xuất bản Chính trị Quốc gia Sự thật.', url: '#' },
+  { label: '[4]', text: 'Báo Quân đội Nhân dân. (n.d.). Ổn định chính trị – vốn quý để phát triển đất nước.', url: 'https://www.qdnd.vn/phong-chong-tu-dien-bien-tu-chuyen-hoa/on-dinh-chinh-tri-von-quy-de-phat-trien-dat-nuoc-775172' },
+  { label: '[5]', text: 'Báo Thanh Niên. (2024). Bao giờ mới hết cảnh rác ngập làng nghề, dân khốn khổ vì ô nhiễm.', url: 'https://thanhnien.vn/bao-gio-moi-het-canh-rac-ngap-lang-nghe-dan-khon-kho-vi-o-nhiem-185240519210750422.htm' },
+  { label: '[6]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (Tập 3). Nhà xuất bản Chính trị Quốc gia Sự thật.', url: 'https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/book/ho-chi-minh/tac-pham/ho-chi-minh-toan-tap-tap-3-270' },
+  { label: '[7]', text: 'Hồ Chí Minh. (n.d.). Hồ Chí Minh toàn tập (Tập 9). Nhà xuất bản Chính trị Quốc gia Sự thật.', url: 'https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/book/ho-chi-minh/tac-pham/ho-chi-minh-toan-tap-tap-9-276' },
+  { label: '[8]', text: 'Học viện Chính trị Quốc gia Hồ Chí Minh. (n.d.). Ho Chi Minh\'s viewpoints on the building and development of Vietnamese culture.', url: 'https://politicaltheory.hcma.vn/ho-chi-minh-s-viewpoints-on-the-building-and-development-of-vietnamese-culture-5848.html' },
+  { label: '[9]', text: 'Kinh tế & Môi trường. (n.d.). Môi trường tan hoang vì những dự án mang danh du lịch nghỉ dưỡng.', url: 'https://kinhtemoitruong.vn/moi-truong-tan-hoang-vi-nhung-du-an-mang-danh-du-lich-nghi-duong-17980.html' },
+  { label: '[10]', text: 'Lai Châu Online. (n.d.). Tư tưởng Hồ Chí Minh – chỉ dẫn để xây dựng và phát triển nền văn hoá Việt Nam.', url: 'https://laichau.gov.vn/tin-tuc-su-kien/chuyen-de/tin-trong-nuoc/tu-tuong-ho-chi-minh-chi-dan-de-xay-dung-va-phat-trien-nen-v.html' },
+  { label: '[11]', text: 'National Library of Vietnam. (n.d.). Hồ Chí Minh – Anh hùng giải phóng dân tộc, nhà văn hoá kiệt xuất.', url: 'https://nlv.gov.vn/phan-1-hcm-anh-hung-giai-phong-dan-toc/ho-chi-minh-anh-hung-giai-phong-dan-toc-nha-van-hoa-kiet-xuat.html' },
+  { label: '[12]', text: 'Tạp chí Cộng sản. (n.d.). Ensuring the people\'s cultural welfare in the process of international integration and sustainable development of Vietnam.', url: 'https://www.tapchicongsan.org.vn/web/english/mega-story/-/asset_publisher/lc29uIxCb05g/content/ensuring-the-people-s-cultural-welfare-in-the-process-of-international-integration-and-sustainable-development-of-vietnam' },
+  { label: '[13]', text: 'Thịnh Vượng Việt Nam. (n.d.). Tầm vóc và giá trị lịch sử – chính trị của Cách mạng Tháng Tám năm 1945.', url: 'https://thinhvuongvietnam.com/Content/tam-voc-va-gia-tri-lich-su---chinh-tri-cua-cach-mang-thang-tam-nam-1945-25212' },
 ];
 
 export function AIUsage() {
