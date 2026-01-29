@@ -10,8 +10,8 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: 'Phenomenon - Văn hóa ba miền',
-  description: 'Website học thuật Triết học Mác – Lênin - Khám phá văn hóa Bắc - Trung - Nam, thư viện tri thức và game dân gian tương tác.'
+  title: 'Tư tưởng Hồ Chí Minh - Văn hóa nền tảng tinh thần của xã hội',
+  description: 'Website học thuật Tư tưởng Hồ Chí Minh - Khám phá văn hóa Bắc - Trung - Nam.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
